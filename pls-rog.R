@@ -24,30 +24,52 @@ for(i in 1:nrow(X)){
 
 X1 <- X
 
-# autoscaling
-D <- scale(t(X))
-
 # response variable
-Y0 <- factor(class)
+Y0 <- factor(c(1,1,1,2,2,2,3,3,3))
 Y <- model.matrix(~ Y0 + 0)
+
+# penalized matrix
+P <- NULL
+p <- colSums(Y)
+for(i in 1:ncol(Y)){
+  P <- cbind(P,Y[,i]/p[i])
+}
+P <- t(P)
+
+# differential matrix
+g <- ncol(Y)
+D <- diff(diag(1,g))
+
+# ------------
+#   PLS-ROG
+# ------------
+# データ
+
+# autoscaling
+X <- scale(t(X))
 Y <- scale(Y,scale=FALSE)
 
-# ----------------
-#   ordinary PLS
-# ----------------
-# (sample size)-1
-N <- nrow(D)-1
+# サンプルサイズ-1
+N <- nrow(X)-1
 
-# singular value decomposition
-USVx <- svd(t(Y)%*%D/N)
-USVy <- svd(t(D)%*%Y/N)
+# 行列
+kappa <- 0
+C <- kappa*t(Y)%*%t(P)%*%t(D)%*%D%*%P%*%Y+(1-kappa)*diag(1,g)
 
-# weight vector matrix
+# コレスキー分解
+Rx <- chol(solve(C))
+Ry <- chol(C)
+
+# 特異値分解
+USVx <- svd(Rx%*%t(Y)%*%X/N)
+USVy <- svd(t(X)%*%Y%*%solve(Ry)/N)
+
+# 重みベクトル
 Wx <- USVx$v
-Wy <- USVy$v
-
-# score matrix
-T <- D%*%Wx
+Wy <- solve(Ry)%*%USVy$v
+            
+# スコア
+T <- X%*%Wx
 S <- Y%*%Wy
 
 # -------------------
@@ -62,6 +84,6 @@ for(i in 1:(ncol(Y)-1)){
 
 ## test
 #R <- NULL
-#for(i in 1:ncol(D)){
+#for(i in 1:nrow(X1)){
 #  R[i] <- cor.test(S[,1],X1[i,])$estimate
 #}
