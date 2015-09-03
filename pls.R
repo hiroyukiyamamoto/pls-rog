@@ -55,8 +55,6 @@ S <- Y%*%Wy
 # -------------------
 #   factor loading
 # -------------------
-# lambdax <- USVx$d^2
-
 R <- NULL
 for(i in 1:(ncol(Y)-1)){
   lambdax <- cov(T[,i],S[,i])
