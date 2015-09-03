@@ -1,5 +1,6 @@
 # pls-rog
 R code for PLS-ROG
 
-解析用のデモデータ:<BR>
-demo.Rdata
+メタボロームデータ視覚化用のナイーブなPLS、Orthonormalized PLS、PLS-ROG、Orthonornalized PLS-ROGのRプログラム
+
+解析用のデモデータ:demo.Rdata
