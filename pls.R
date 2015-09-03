@@ -11,11 +11,7 @@ class <- Z$Y # class
 # ------------------
 #   data preparing
 # ------------------
-# Annotation
-Annotation <- X0[,1]
-
 # data matrix
-X <- X0[1:nrow(X0), -1] # remove annotation
 X <- as.matrix(X)
 X <- matrix(as.numeric(X),nrow=nrow(X)) # metabolites*samples
 
