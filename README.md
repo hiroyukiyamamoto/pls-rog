@@ -1,4 +1,5 @@
 # pls-rog
 R code for PLS-ROG
 
-test
+解析用のデモデータ:<BR>
+demo.Rdata
