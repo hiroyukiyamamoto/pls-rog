@@ -43,32 +43,30 @@ D <- diff(diag(1,g))
 # ------------
 #   PLS-ROG
 # ------------
-# データ
-
 # autoscaling
 X <- scale(t(X))
 Y <- scale(Y,scale=FALSE)
 
-# サンプルサイズ-1
+# sample size-1
 N <- nrow(X)-1
 
-# 行列
+# smoothing parameter
 kappa <- 0
 C <- kappa*t(Y)%*%t(P)%*%t(D)%*%D%*%P%*%Y+(1-kappa)*diag(1,g)
 
-# コレスキー分解
+# cholesky decomposition
 Rx <- chol(solve(C))
 Ry <- chol(C)
 
-# 特異値分解
+# singular value decomposition
 USVx <- svd(Rx%*%t(Y)%*%X/N)
 USVy <- svd(t(X)%*%Y%*%solve(Ry)/N)
 
-# 重みベクトル
+# weght vector
 Wx <- USVx$v
 Wy <- solve(Ry)%*%USVy$v
             
-# スコア
+# score
 T <- X%*%Wx
 S <- Y%*%Wy
 
