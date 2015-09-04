@@ -51,7 +51,7 @@ Y <- scale(Y,scale=FALSE)
 N <- nrow(X)-1
 
 # smoothing parameter
-kappa <- 0
+kappa <- 0.5
 C <- kappa*t(Y)%*%t(P)%*%t(D)%*%D%*%P%*%Y+(1-kappa)*diag(1,g)
 
 # cholesky decomposition
