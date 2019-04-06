@@ -49,5 +49,5 @@ plsrog <- function(X,class, kappa){
       R <- cbind(R,r)
   }
   
-  all <- list(T,S,Wx,Wy)
+  all <- list(T,S,Wx,Wy,R)
 }
