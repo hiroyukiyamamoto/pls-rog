@@ -45,7 +45,7 @@ plsrog <- function(X,class, kappa){
   R <- NULL
   for(i in 1:(ncol(Y)-1)){
       lambdax <- cov(T[,i],S[,i])
-      r <- (sqrt(N)*lambdax*Wx[,i])/(sqrt(t(Wy[,i])%*%t(Y)%*%Y%*%Wy[,i]))
+      r <- (sqrt(N)*lambdax*Wx[,i])/as.numeric(sqrt(t(Wy[,i])%*%t(Y)%*%Y%*%Wy[,i]))
       R <- cbind(R,r)
   }
   
