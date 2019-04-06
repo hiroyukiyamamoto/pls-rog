@@ -41,6 +41,13 @@ plsrog <- function(X,class, kappa){
   # score
   T <- X%*%Wx
   S <- Y%*%Wy
+    
+  R <- NULL
+  for(i in 1:(ncol(Y)-1)){
+      lambdax <- cov(T[,i],S[,i])
+      r <- (sqrt(N)*lambdax*Wx[,i])/(sqrt(t(Wy[,i])%*%t(Y)%*%Y%*%Wy[,i]))
+      R <- cbind(R,r)
+  }
   
   all <- list(T,S,Wx,Wy)
 }
