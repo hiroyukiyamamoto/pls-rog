@@ -15,9 +15,7 @@ plsrog <- function(X,class, kappa){
   # differential matrix
   g <- ncol(Y)
   D <- diff(diag(1,g))
-  
-  X <- yarn$NIR[index,]
-  
+    
   # autoscaling
   X <- scale(X)
   Y <- scale(Y,scale=FALSE)
