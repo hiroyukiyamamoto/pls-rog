@@ -42,6 +42,7 @@ plsrog <- function(X,class, kappa){
   T <- X%*%Wx
   S <- Y%*%Wy
     
+  # PLS loading
   R <- NULL
   for(i in 1:(ncol(Y)-1)){
       lambdax <- cov(T[,i],S[,i])
@@ -49,5 +50,12 @@ plsrog <- function(X,class, kappa){
       R <- cbind(R,r)
   }
   
-  all <- list(T,S,Wx,Wy,R)
+  # statistical test of PLS loading
+  P <- NULL
+  for(i in 1:(ncol(Y)-1)){
+    p <- 2*pt(abs(R[,i])*sqrt(nrow(X)-2)/sqrt(1-R[,i]^2), nrow(X)-2, lower.tail=FALSE)
+    P <- cbind(P,p)
+  }
+  
+  all <- list(T,S,Wx,Wy,R,P)
 }
