@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 > - pls-rogの関数を読み込む
 > - デモデータ(variable × sample)を読み込むんで、sample × variableの行列に転置する
 ```{r load_function}
-source("https://github.com/hiroyukiyamamoto/pls-rog/blob/master/plsrog.R")
+source("https://raw.githubusercontent.com/hiroyukiyamamoto/pls-rog/master/plsrog.R")
 load(file="C:/Users/yamamoto/Documents/GitHub/pls-rog/demo.Rdata")
 X <- t(Z$X) # sample*variable
 ```
@@ -20,7 +20,8 @@ X <- t(Z$X) # sample*variable
 ### PLS-ROGの計算と結果
 > - 引数は、データ行列、群情報、平滑化パラメーターの順に設定する
 > - score_XがPLS-ROGのスコア
-> - Rはscore_Yとデータ行列Xの各変数の相関係数
+> - Rはscore_Yとデータ行列Xの各変数の相関係数(PLS-ROG loading)
+> - Pは各列がそれぞれの成分のPLS-ROG loadingのp-value
 ```{r pls_rog}
 plsrog <- plsrog(X, Z$Y, 0.999)
 
