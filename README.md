@@ -1,16 +1,12 @@
-PLS-ROGの計算(デモデータ)
+PLS-ROG
 ================
 
-### 準備
+### お知らせ
 
->   - pls-rogの関数を読み込む
->   - デモデータ(variable × sample)を読み込むんで、sample × variableの行列に転置する
+>   - このリポジトリは、今後loadingsリポジトリに統合予定です。
+>   - This repository will be integrated into the "loadings" (https://github.com/hiroyukiyamamoto/loadings) in the future.
 
-``` r
-source("https://raw.githubusercontent.com/hiroyukiyamamoto/pls-rog/master/plsrog.R")
-load(file="C:/Users/yamamoto/Documents/GitHub/pls-rog/demo.Rdata")
-X <- t(Z$X) # sample*variable
-```
+
 
 ### PLS-ROGの計算と結果
 
