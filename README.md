@@ -7,4 +7,4 @@ PLS-ROG: Partial least squares with rank order of groups
 
 ### Information
 
->   - This repository will be integrated into the "loadings" (https://github.com/hiroyukiyamamoto/loadings) in the future.
+>   - This repository has been integrated into the "loadings" (https://github.com/hiroyukiyamamoto/loadings).
